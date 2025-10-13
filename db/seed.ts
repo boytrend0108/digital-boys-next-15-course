@@ -5,7 +5,9 @@ import { drizzle } from "drizzle-orm/node-postgres";
 
 async function main() {
   const db = drizzle(process.env.DATABASE_URL!);
+
   await reset(db, schema);
+
   await seed(db, schema).refine((f) => ({
     users: {
       count: 100,
